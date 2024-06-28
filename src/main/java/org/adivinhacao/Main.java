@@ -1,6 +1,5 @@
 package org.adivinhacao;
 
-import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -46,7 +45,6 @@ public class Main {
                 System.out.println("You have 15 chances to get it right\n");
                 break;
         }
-
         int i = 5;
         while (i <= levels) {
             String attempt = sc.nextLine();
