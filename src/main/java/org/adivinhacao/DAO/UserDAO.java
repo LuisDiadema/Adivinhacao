@@ -22,6 +22,7 @@ public class UserDAO {
 
         System.out.println("Create your nick name:");
         String nick = sc.nextLine();
+        System.out.println("You nick is " + nick);
 
         //This variable count how chances the user have.
         int fix = 15;
@@ -57,8 +58,9 @@ public class UserDAO {
 
         //This block of code read of the user input and the decision of structure read and executa
         int i = 1;
+        String attempt = null;
         while (i <= levels) {
-            String attempt = sc.nextLine();
+            attempt = sc.nextLine();
             int kick = Integer.parseInt(attempt);
 
             boolean right = kick == secret;
@@ -67,7 +69,8 @@ public class UserDAO {
                 System.out.println("You cannot input negative number \nTry again");
                 i--;
                 continue;
-            } if (right) {
+            }
+            if (right) {
                 break;
             } else if (kick < secret) {
                 System.out.println("\nGuess is smaller than the secret number");
@@ -84,12 +87,12 @@ public class UserDAO {
             }
         }
 
-        //This block of code prints a win or loss message.
-        String attempt = sc.nextLine();
+        //This block of code count points the user makes.
+        assert attempt != null;
         int kick = Integer.parseInt(attempt);
-
         boolean right = kick == secret;
 
+        //This block of code prints a win or loss message.
         if (right) {
             System.out.println("╚═( ͡° ͜ʖ ͡°)═╝\\n\" +\n" +
                     "                        \"╚═(███)═╝\\n\" +\n" +
@@ -109,15 +112,12 @@ public class UserDAO {
                     "                        \"……╚(██)╝\\n\" +\n" +
                     "                        \"………(█)");
         } else {
-            System.out.println("\\\\n─█───█▀▀█─█▀▀─█▀▀─█▀▀─█▀▀█\\\\n\\\" +\\n\" +\n" +
-                    "                        \"                \\\"─█───█──█─▀▀█─▀▀█─█▀▀─█▄▄▀\\\\n\\\" +\\n\" +\n" +
-                    "                        \"                \\\"─▀▀▀─▀▀▀▀─▀▀▀─▀▀▀─▀▀▀─▀─▀▀");
+            System.out.println("LOSER");
         }
 
         //This block of code adds the user's score.
-        double points = 1000;
-        double score = points * 2 / 3;
-        System.out.println("Your score is " + score + "\n\n");
+        int score = i + 5 * 3 / 8;
+        System.out.printf("Your score is " + score + "\n\n");
 
         //This block of code insert the data in the SQL database.
         String sql = "INSERT INTO RANKED (NICK, SCORE) VALUES (?, ?)";
@@ -136,5 +136,6 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }
