@@ -18,8 +18,6 @@ public class UserDAO {
         Random number = new Random();
         int secret = number.nextInt(100);
 
-        System.out.println(secret);
-
         System.out.println("Create your nick name:");
         String nick = sc.nextLine();
         System.out.println("You nick is " + nick);
